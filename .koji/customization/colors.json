@@ -1,7 +1,8 @@
 {
   "colors": {
     "backgroundColor": "#3f62ae",
-    "textColor": "#ffffff"
+    "textColor": "#f2f2f2",
+    "clr_ClickParticleSystem": "#ffb299"
   },
   "@@editor": [
     {
@@ -17,8 +18,8 @@
           "type": "color"
         },
         {
-          "key": "backgroundColor",
-          "name": "Background color",
+          "key": "clr_ClickParticleSystem",
+          "name": "Main Object Click Particle System Color",
           "type": "color"
         }
       ]

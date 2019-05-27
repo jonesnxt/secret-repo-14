@@ -1,0 +1,35 @@
+{
+  "sounds": {
+    "sound_ClickOnMainObject": "https://objects.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/ANVIL.wav",
+    "sound_Upgrade": "https://objects.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/firebowsoundmikekoenig.wav",
+    "sound_Ambient": "https://objects.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/videoplayback.mp3"
+  },
+  "@@editor": [
+    {
+      "key": "sounds",
+      "name": "Sounds",
+      "icon": ":loud_sound:️",
+      "source": "sounds.json",
+      "fields": [
+        {
+          "key": "sound_ClickOnMainObject",
+          "name": "Click On Main Object Sound",
+          "description": "Click On Main Object Sound",
+          "type": "sound"
+        },
+        {
+          "key": "sound_Upgrade",
+          "name": "Upgrade Sound",
+          "description": "Upgrade Sound",
+          "type": "sound"
+        },
+        {
+          "key": "sound_Ambient",
+          "name": "Ambient Sound",
+          "description": "Ambient Sound",
+          "type": "sound"
+        }
+      ]
+    }
+  ]
+}

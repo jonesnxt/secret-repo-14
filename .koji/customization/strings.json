@@ -1,11 +1,21 @@
 {
   "strings": {
-    "content": "Koji P5 Scaffold"
+    "content": "IdleClickerTemp",
+    "Title": "IdleClickerTitle",
+    "title": "Blacksmith Clicker",
+    "pointsName": "Metal",
+    "tier1UpgradeName": "Worker",
+    "tier2UpgradeName": "Forge",
+    "tier3UpgradeName": "Shop",
+    "tier4UpgradeName": "Town",
+    "tier5UpgradeName": "Planetary Forge",
+    "fontFamily": "https://fonts.googleapis.com/css?family=Spectral&display=swap\" rel=\"stylesheet",
+    "clickUpgradeName": "Hammer"
   },
   "@@editor": [
     {
       "key": "strings",
-      "name": "Strings",
+      "name": "Game Settings",
       "icon": "📚",
       "source": "strings.json",
       "fields": [
@@ -13,6 +23,60 @@
           "key": "content",
           "name": "Page Content",
           "description": "The text that is displayed on the page",
+          "type": "text"
+        },
+        {
+          "key": "title",
+          "name": "Title",
+          "description": "The text that is displayed on the page",
+          "type": "text"
+        },
+        {
+          "key": "pointsName",
+          "name": "Name for the main resource",
+          "description": "Name for the main resource",
+          "type": "text"
+        },
+        {
+          "key": "tier1UpgradeName",
+          "name": "Tier 1 Upgrade Name",
+          "description": "Tier 1 Upgrade Name",
+          "type": "text"
+        },
+        {
+          "key": "tier2UpgradeName",
+          "name": "Tier 2 Upgrade Name",
+          "description": "Tier 2 Upgrade Name",
+          "type": "text"
+        },
+        {
+          "key": "tier3UpgradeName",
+          "name": "Tier 3 Upgrade Name",
+          "description": "Tier 3 Upgrade Name",
+          "type": "text"
+        },
+        {
+          "key": "tier4UpgradeName",
+          "name": "Tier 4 Upgrade Name",
+          "description": "Tier 4 Upgrade Name",
+          "type": "text"
+        },
+        {
+          "key": "tier5UpgradeName",
+          "name": "Tier 5 Upgrade Name",
+          "description": "Tier 5 Upgrade Name",
+          "type": "text"
+        },
+        {
+          "key": "fontFamily",
+          "name": "Font Family",
+          "description": "Google fonts link to font to use in the game",
+          "type": "text"
+        },
+        {
+          "key": "clickUpgradeName",
+          "name": "Click Upgrade Name",
+          "description": "Name of the click upgrade",
           "type": "text"
         }
       ]

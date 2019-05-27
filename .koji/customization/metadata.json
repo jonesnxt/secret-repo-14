@@ -1,12 +1,12 @@
 {
   "metadata": {
-    "name": "Koji P5 Scaffold",
-    "short_name": "P5 App",
-    "description": "A React scaffold modified specifically for Koji. Easily customizable at gokoji.com.",
-    "image": "https://images.koji-cdn.com/025a4ca3-2c61-4cf2-b821-55b7023c47dc/kojireact.png",
-    "icon": "https://objects.koji-cdn.com/025a4ca3-2c61-4cf2-b821-55b7023c47dc/94e432a7-951b-4b41-a726-d5d9fc66c533.ico",
-    "icon192": "",
-    "icon512": "",
+    "name": "Blacksmith Clicker",
+    "short_name": "Blacksmith Clicker",
+    "description": "Blacksmith Clicker game made with Koji using P5",
+    "image": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/Hammer.png",
+    "icon": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/Hammer32.png",
+    "icon192": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/Hammer192.png",
+    "icon512": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/Hammer512.png",
     "gaCode": ""
   },
   "@@editor": [

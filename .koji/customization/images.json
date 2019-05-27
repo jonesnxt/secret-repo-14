@@ -1,6 +1,24 @@
 {
   "images": {
-    "mouse": "https://images.koji-cdn.com/76a58d18-9031-4cf9-871c-b4701b0e2537/f4864534-ede5-40e9-ac53-a81df8a25d77.png"
+    "mouse": "https://images.koji-cdn.com/76a58d18-9031-4cf9-871c-b4701b0e2537/f4864534-ede5-40e9-ac53-a81df8a25d77.png",
+    "img_background": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/ClickerBG.jpg",
+    "mouseImg": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/Hammer32x32.png",
+    "img_mouse": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/Hammer256.png",
+    "img_objectToClick": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/Anvil.png",
+    "img_Background": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/UpgradeBG2.jpg",
+    "img_Mouse": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/HammerClickNormal.png",
+    "img_MainObjectToClick": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/Anvil2.png",
+    "img_Tier1Upgrade": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/Tier1Upgrade.png",
+    "img_Tier2Upgrade": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/Tier2Upgrade3.png",
+    "img_Tier3Upgrade": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/Blacksmithclipart.png",
+    "img_Tier4Upgrade": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/Tier4Upgrade2.jpg",
+    "img_Tier5Upgrade": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/Tier5Upgrade.jpg",
+    "img_LockedUpgrade": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/LockedUpgrade.png",
+    "img_UpgradeBG": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/UpgradeBG1.jpg",
+    "img_ClickUpgrade": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/CursorImage.png",
+    "img_SoundOn": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/SoundOncopy.png",
+    "img_SoundOff": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/SoundOffcopy.png",
+    "img_MouseHold": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/HammerClickRotated.png"
   },
   "@@editor": [
     {
@@ -10,9 +28,87 @@
       "source": "images.json",
       "fields": [
         {
-          "key": "mouse",
-          "name": "Icon",
+          "key": "img_Mouse",
+          "name": "Mouse Image",
+          "description": "Mouse Image",
+          "type": "image"
+        },
+        {
+          "key": "img_MouseHold",
+          "name": "Mouse Hold Image",
+          "description": "Mouse Hold Image",
+          "type": "image"
+        },
+        {
+          "key": "img_Background",
+          "name": "Background Image",
           "description": "Icon that spins on the page",
+          "type": "image"
+        },
+        {
+          "key": "img_MainObjectToClick",
+          "name": "Object To Click",
+          "description": "Object to Click",
+          "type": "image"
+        },
+        {
+          "key": "img_Tier1Upgrade",
+          "name": "Tier 1 Upgrade Image",
+          "description": "Tier 1 Upgrade Image",
+          "type": "image"
+        },
+        {
+          "key": "img_Tier2Upgrade",
+          "name": "Tier 2 Upgrade Image",
+          "description": "Tier 2 Upgrade Image",
+          "type": "image"
+        },
+        {
+          "key": "img_Tier3Upgrade",
+          "name": "Tier 3 Upgrade Image",
+          "description": "Tier 3 Upgrade Image",
+          "type": "image"
+        },
+        {
+          "key": "img_Tier4Upgrade",
+          "name": "Tier 4 Upgrade Image",
+          "description": "Tier 4 Upgrade Image",
+          "type": "image"
+        },
+        {
+          "key": "img_Tier5Upgrade",
+          "name": "Tier 5 Upgrade Image",
+          "description": "Tier 5 Upgrade Image",
+          "type": "image"
+        },
+        {
+          "key": "img_LockedUpgrade",
+          "name": "Locked Upgrade Image",
+          "description": "Locked Upgrade Image",
+          "type": "image"
+        },
+        {
+          "key": "img_UpgradeBG",
+          "name": "Upgrade Background",
+          "description": "Upgrade Background",
+          "type": "image"
+        },
+        {
+          "key": "img_ClickUpgrade",
+          "name": "Click Upgrade",
+          "description": "Click Upgrade",
+          "type": "image"
+        },
+        {
+          "key": "img_SoundOn",
+          "name": "Sound On",
+          "description": "Sound On",
+          "type": "image"
+        },
+        {
+          "key": "img_SoundOff",
+          "name": "Sound Off",
+          "description": "Sound Off",
           "type": "image"
         }
       ]
