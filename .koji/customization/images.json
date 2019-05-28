@@ -18,7 +18,8 @@
     "img_ClickUpgrade": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/CursorImage.png",
     "img_SoundOn": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/SoundOncopy.png",
     "img_SoundOff": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/SoundOffcopy.png",
-    "img_MouseHold": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/HammerClickRotated.png"
+    "img_MouseHold": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/HammerClickRotated.png",
+    "img_DataDelete": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/512pxTrashfontawesome1.svg.png"
   },
   "@@editor": [
     {
@@ -109,6 +110,12 @@
           "key": "img_SoundOff",
           "name": "Sound Off",
           "description": "Sound Off",
+          "type": "image"
+        },
+        {
+          "key": "img_DataDelete",
+          "name": "Saved Game Delete",
+          "description": "Saved Game Delete",
           "type": "image"
         }
       ]

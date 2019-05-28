@@ -13,10 +13,10 @@ let img_ClickUpgrade;
 let img_SoundOff;
 let img_SoundOn;
 let img_MouseHold;
+let img_DataDelete;
 
 // Misc
 let myFont;
-let soundEnabled = false;
 let globalMainObjectPos;
 let globalMainObjectSize;
 let muteSound;
@@ -47,8 +47,10 @@ let tier3Upgrade;
 let tier4Upgrade;
 let tier5Upgrade;
 let clickUpgrade;
+let deleteDataButton;
 
 // Sound
+let soundEnabled = true;
 var ambientAudio;
 
 
@@ -72,6 +74,7 @@ function preload()
   img_SoundOn           = loadImage(Koji.config.images.img_SoundOn);
   img_SoundOff          = loadImage(Koji.config.images.img_SoundOff);
   img_MouseHold         = loadImage(Koji.config.images.img_MouseHold);
+  img_DataDelete        = loadImage(Koji.config.images.img_DataDelete);
 
   // Load font
   var link  = document.createElement('link');
@@ -103,6 +106,7 @@ function setup()
   ambientAudio = new Audio(Koji.config.sounds.sound_Ambient);
   clickAudio   = new Audio(Koji.config.sounds.sound_ClickOnMainObject);
   upgradeAudio = new Audio(Koji.config.sounds.sound_Upgrade);
+  deleteDataButton = new DeleteData();
 
   ambientAudio.loop = true; // Loop ambient sound
   if(soundEnabled)  ambientAudio.play();
@@ -133,6 +137,7 @@ function draw()
   tier5Upgrade.Tick();
   clickUpgrade.Tick();
 
+  deleteDataButton.mousePressed();
   mainObjectToClick.mousePressed(manualPressPoints);
   muteSound.mousePressed();
 
@@ -149,14 +154,12 @@ function draw()
 
 
 // Play sound
-PlaySound = function (src, shouldLoop)
+PlaySound = function (src)
 {
   if(soundEnabled)
   {
     var audio = new Audio(src);
-    audio.loop = shouldLoop;
     audio.play(); 
-    //audio.stop();
   }
 }
 
@@ -237,7 +240,7 @@ function ObjectForClickingClass(objectImage, imageX_Pos, imageY_Pos)
       {
         AddPoints(pointsToAdd * (numOfClickUpgrades+1));
         //window.localStorage.clear();  // Clear all saved params - used for testing
-        PlaySound(Koji.config.sounds.sound_ClickOnMainObject, false);
+        PlaySound(Koji.config.sounds.sound_ClickOnMainObject);
         clickParticleSystem.addParticle(createVector(mouseX, mouseY));
         canInteractWithClick = false;
         return true;
@@ -324,7 +327,7 @@ function TierUpgradeClass(tierImg, imageX_Pos, imageY_Pos, pointsPerSecToAdd, ti
         {
           this.numOfUpgrades++;
           RemovePoints(this.cost); 
-          PlaySound(Koji.config.sounds.sound_Upgrade, false);
+          PlaySound(Koji.config.sounds.sound_Upgrade);
 
           switch(this.tier)
           {
@@ -418,7 +421,7 @@ function ClickUpgrade(clickUpgImg, pointCost, name)
           this.numOfUpgrades = this.numOfUpgrades+1;
           numOfClickUpgrades = this.numOfUpgrades;
           RemovePoints(this.cost); 
-          PlaySound(Koji.config.sounds.sound_Upgrade, false);
+          PlaySound(Koji.config.sounds.sound_Upgrade);
           canInteractWithClick = false; // Stops the effect of holding the mouse down
           SaveGame();
           return true;
@@ -586,7 +589,7 @@ ParticleSystem.prototype.run = function() {
 //
 function MuteSoundButton()
 {
-  let imageSize = window.innerHeight/20;
+  let imageSize = window.innerHeight/15;
   this.pos = createVector(window.innerWidth-imageSize, 0);
   // setup an image to follow our mouse
 
@@ -617,6 +620,30 @@ function MuteSoundButton()
         ambientAudio.play();
         soundEnabled = true;
       }
+      canInteractWithClick = false; // Stops the effect of holding the mouse down
+    }
+  }
+}
+
+
+//
+function DeleteData()
+{
+  let imageSize = window.innerHeight/15;
+  this.pos = createVector(window.innerWidth-imageSize, window.innerHeight*0.75);
+  // setup an image to follow our mouse
+
+  this.mousePressed = function ()
+  {
+      image(img_DataDelete, this.pos.x, this.pos.y, imageSize, imageSize);
+
+    // Clicked mute
+    if (mouseX >= this.pos.x && mouseX <= this.pos.x + imageSize &&
+        mouseY >= this.pos.y && mouseY <= this.pos.y + imageSize &&
+        isMousePressed == true && canInteractWithClick == true)
+    {
+      window.localStorage.clear(); // Clear all saved params - used for testing
+
       canInteractWithClick = false; // Stops the effect of holding the mouse down
     }
   }
