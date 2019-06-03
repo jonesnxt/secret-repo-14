@@ -14,6 +14,10 @@ let img_SoundOff;
 let img_SoundOn;
 let img_MouseHold;
 let img_DataDelete;
+let img_DataPrompt;
+let img_DataDeleteYes;
+let img_DataDeleteNo;
+let img_Menu;
 
 // Misc
 let myFont;
@@ -22,6 +26,9 @@ let globalMainObjectSize;
 let muteSound;
 let isMousePressed = false;
 let canInteractWithClick = true;
+let showMenu = true;
+let showDataDeletePrompt = false;
+let soundCreated = false;
 
 // Gameplay Stats
 let points = 0;
@@ -60,8 +67,6 @@ function preload()
 { 
   // Load images
   img_Mouse             = loadImage(Koji.config.images.img_Mouse);
-
-  img_Background        = loadImage(Koji.config.images.img_Background);
   img_MainObjectToClick = loadImage(Koji.config.images.img_MainObjectToClick);
   img_Tier1Upgrade      = loadImage(Koji.config.images.img_Tier1Upgrade);
   img_Tier2Upgrade      = loadImage(Koji.config.images.img_Tier2Upgrade);
@@ -75,6 +80,20 @@ function preload()
   img_SoundOff          = loadImage(Koji.config.images.img_SoundOff);
   img_MouseHold         = loadImage(Koji.config.images.img_MouseHold);
   img_DataDelete        = loadImage(Koji.config.images.img_DataDelete);
+  img_DataPrompt        = loadImage(Koji.config.images.img_DataDeletePrompt);
+  img_DataDeleteYes     = loadImage(Koji.config.images.img_DataDeleteYes);
+  img_DataDeleteNo      = loadImage(Koji.config.images.img_DataDeleteNo);
+
+  if(window.innerWidth > window.innerHeight)
+  {
+    img_Menu              = loadImage(Koji.config.images.img_Menu);
+    img_Background        = loadImage(Koji.config.images.img_Background);
+  }
+  else
+  {
+    img_Menu              = loadImage(Koji.config.images.img_MenuMobile);
+    img_Background        = loadImage(Koji.config.images.img_BackgroundMobile);
+  }
 
   // Load font
   var link  = document.createElement('link');
@@ -95,15 +114,45 @@ function setup()
 
   // Create Class instances
   clickParticleSystem = new ParticleSystem(createVector(window.innerWidth/2, window.innerHeight/2));
-  mainObjectToClick   = new ObjectForClickingClass(img_MainObjectToClick);
-  tier1Upgrade = new TierUpgradeClass(img_Tier1Upgrade, 0, window.innerHeight*0.0525, 1.37,  1, 4,     Koji.config.strings.tier1UpgradeName);
-  tier2Upgrade = new TierUpgradeClass(img_Tier2Upgrade, 0, window.innerHeight*0.2175, 10,  2, 55,    Koji.config.strings.tier2UpgradeName);
-  tier3Upgrade = new TierUpgradeClass(img_Tier3Upgrade, 0, window.innerHeight*0.3825, 50,  3, 715,   Koji.config.strings.tier3UpgradeName);
-  tier4Upgrade = new TierUpgradeClass(img_Tier4Upgrade, 0, window.innerHeight*0.5475, 150, 4, 8500,  Koji.config.strings.tier4UpgradeName);
-  tier5Upgrade = new TierUpgradeClass(img_Tier5Upgrade, 0, window.innerHeight*0.7125, 1200, 5, 100000, Koji.config.strings.tier5UpgradeName);
-  clickUpgrade = new ClickUpgrade(img_ClickUpgrade, 50, Koji.config.strings.clickUpgradeName);
+  globalMainObjectSize = window.innerHeight/2.5;
+  if(window.innerWidth > window.innerHeight)
+  {
+    let tempTierUpgradeSize = window.innerWidth/16;
+    let tempCounterForXPos = 7;
+
+    mainObjectToClick = new ObjectForClickingClass(img_MainObjectToClick, window.innerWidth/2 - globalMainObjectSize/2,  window.innerHeight/2.5 - globalMainObjectSize/2, globalMainObjectSize);
+
+    // Center the upgrades
+    tier1Upgrade = new TierUpgradeClass(img_Tier1Upgrade, window.innerWidth-tempCounterForXPos*tempTierUpgradeSize*2, window.innerHeight - tempTierUpgradeSize*2, 1.37, 1, 4,      Koji.config.strings.tier1UpgradeName, tempTierUpgradeSize);
+    tempCounterForXPos--;
+    tier2Upgrade = new TierUpgradeClass(img_Tier2Upgrade, window.innerWidth-tempCounterForXPos*tempTierUpgradeSize*2, window.innerHeight - tempTierUpgradeSize*2, 10,   2, 55,     Koji.config.strings.tier2UpgradeName, tempTierUpgradeSize);
+    tempCounterForXPos--;
+    tier3Upgrade = new TierUpgradeClass(img_Tier3Upgrade, window.innerWidth-tempCounterForXPos*tempTierUpgradeSize*2, window.innerHeight - tempTierUpgradeSize*2, 50,   3, 715,    Koji.config.strings.tier3UpgradeName, tempTierUpgradeSize);
+    tempCounterForXPos--;
+    tier4Upgrade = new TierUpgradeClass(img_Tier4Upgrade, window.innerWidth-tempCounterForXPos*tempTierUpgradeSize*2, window.innerHeight - tempTierUpgradeSize*2, 150,  4, 8500,   Koji.config.strings.tier4UpgradeName, tempTierUpgradeSize);
+    tempCounterForXPos--;
+    tier5Upgrade = new TierUpgradeClass(img_Tier5Upgrade, window.innerWidth-tempCounterForXPos*tempTierUpgradeSize*2, window.innerHeight - tempTierUpgradeSize*2, 1200, 5, 100000, Koji.config.strings.tier5UpgradeName, tempTierUpgradeSize);
+    tempCounterForXPos--;
+    clickUpgrade = new ClickUpgrade(img_ClickUpgrade, 50, Koji.config.strings.clickUpgradeName, window.innerWidth-tempCounterForXPos*tempTierUpgradeSize*2, window.innerHeight - tempTierUpgradeSize*2, tempTierUpgradeSize);
+  }
+  else
+  {
+    let tempTierUpgradeSize = window.innerHeight/10;
+
+    mainObjectToClick = new ObjectForClickingClass(img_MainObjectToClick, window.innerWidth/1.5 - globalMainObjectSize/2,  window.innerHeight/2.5 -(globalMainObjectSize/2), globalMainObjectSize);
+
+    tier1Upgrade = new TierUpgradeClass(img_Tier1Upgrade, 0, window.innerHeight*0.0525, 1.37,  1, 4,     Koji.config.strings.tier1UpgradeName, tempTierUpgradeSize);
+    tier2Upgrade = new TierUpgradeClass(img_Tier2Upgrade, 0, window.innerHeight*0.2175, 10,  2, 55,    Koji.config.strings.tier2UpgradeName, tempTierUpgradeSize);
+    tier3Upgrade = new TierUpgradeClass(img_Tier3Upgrade, 0, window.innerHeight*0.3825, 50,  3, 715,   Koji.config.strings.tier3UpgradeName, tempTierUpgradeSize);
+    tier4Upgrade = new TierUpgradeClass(img_Tier4Upgrade, 0, window.innerHeight*0.5475, 150, 4, 8500,  Koji.config.strings.tier4UpgradeName, tempTierUpgradeSize);
+    tier5Upgrade = new TierUpgradeClass(img_Tier5Upgrade, 0, window.innerHeight*0.7125, 1200, 5, 100000, Koji.config.strings.tier5UpgradeName, tempTierUpgradeSize);
+
+    clickUpgrade = new ClickUpgrade(img_ClickUpgrade, 50, Koji.config.strings.clickUpgradeName, tempTierUpgradeSize*2, window.innerHeight*0.7125, tempTierUpgradeSize);
+  }
+
   muteSound = new MuteSoundButton();
-  ambientAudio = new Audio(Koji.config.sounds.sound_Ambient);
+  if(!soundCreated) ambientAudio = new Audio(Koji.config.sounds.sound_Ambient);
+  soundCreated = true;
   clickAudio   = new Audio(Koji.config.sounds.sound_ClickOnMainObject);
   upgradeAudio = new Audio(Koji.config.sounds.sound_Upgrade);
   deleteDataButton = new DeleteData();
@@ -115,6 +164,7 @@ function setup()
   setInterval(SaveGame, 30000);
 
   Init();
+  
 }
 
 function draw()
@@ -144,7 +194,13 @@ function draw()
   // Control particle system
   clickParticleSystem.run();
 
+  if(showMenu)
+  {
+    image(img_Menu, 0,0, window.innerWidth, window.innerHeight);
+  }
   UpdateCursor();
+
+
 }
 
 //******************************************************************************************************************
@@ -210,14 +266,15 @@ function SaveGame()
 }
 
 // Class for the object that you click on to get points
-function ObjectForClickingClass(objectImage, imageX_Pos, imageY_Pos)
+function ObjectForClickingClass(objectImage, posX, posY, size)
 {
-  this.size = window.innerHeight/2.5;
-  this.pos = createVector((window.innerWidth/1.5) -(this.size/2),  (window.innerHeight/2.5) -(this.size/2));
+  this.size = size;
+  this.pos = createVector(posX,  posY);
   this.img = objectImage;
   let tempPosForPointsText = createVector(this.pos.x + this.size/2, this.pos.y - this.size/9);
   globalMainObjectPos = this.pos;
   globalMainObjectSize = this.size;
+  
 
   this.Render = function()
   {
@@ -239,7 +296,6 @@ function ObjectForClickingClass(objectImage, imageX_Pos, imageY_Pos)
       if(isMousePressed == true && canInteractWithClick == true)
       {
         AddPoints(pointsToAdd * (numOfClickUpgrades+1));
-        //window.localStorage.clear();  // Clear all saved params - used for testing
         PlaySound(Koji.config.sounds.sound_ClickOnMainObject);
         clickParticleSystem.addParticle(createVector(mouseX, mouseY));
         canInteractWithClick = false;
@@ -254,10 +310,10 @@ function ObjectForClickingClass(objectImage, imageX_Pos, imageY_Pos)
 }
 
 // Class for the point per sec upgrades
-function TierUpgradeClass(tierImg, imageX_Pos, imageY_Pos, pointsPerSecToAdd, tier, pointCost, name)
+function TierUpgradeClass(tierImg, imageX_Pos, imageY_Pos, pointsPerSecToAdd, tier, pointCost, name, size)
 {
     // Constructor
-    this.size = window.innerHeight/10;
+    this.size = size;
     this.pos = createVector(imageX_Pos, imageY_Pos);
     this.img = tierImg;
     this.tier = tier;
@@ -381,12 +437,11 @@ function TierUpgradeClass(tierImg, imageX_Pos, imageY_Pos, pointsPerSecToAdd, ti
   }
 }
 
-function ClickUpgrade(clickUpgImg, pointCost, name)
+function ClickUpgrade(clickUpgImg, pointCost, name, posX, posY, size)
 {
     // Constructor
-    let size = window.innerHeight/10;
     this.size = size;
-    this.pos = createVector(size + size, window.innerHeight*0.7125);
+    this.pos = createVector(posX, posY);
     this.img = clickUpgImg;
     this.name = name;
     this.numOfUpgrades = 0;
@@ -494,9 +549,16 @@ function CalculatePointsPerSecond()
 
 //
 function RenderBackground()
-{
-    background(img_Background);
-    fill('rgba(25,0,0, 1)');
+{ 
+    if(!showMenu)
+    {
+      background(img_Background);
+    }
+    else
+    {
+      background(img_Background);
+    }
+
 }
 
 // set the image to follow the cursor
@@ -519,6 +581,7 @@ function UpdateCursor()
 //
 function mousePressed()
 {
+  showMenu = false;
   isMousePressed = true;
 }
 
@@ -630,21 +693,64 @@ function MuteSoundButton()
 function DeleteData()
 {
   let imageSize = window.innerHeight/15;
+  let promptImageSize = window.innerHeight/2.3;
+  let yesNoYPos = window.innerHeight/2+promptImageSize/4;
+  
   this.pos = createVector(window.innerWidth-imageSize, window.innerHeight*0.75);
   // setup an image to follow our mouse
 
   this.mousePressed = function ()
-  {
-      image(img_DataDelete, this.pos.x, this.pos.y, imageSize, imageSize);
+  { 
+    if(showDataDeletePrompt)
+    {
+      image(img_DataPrompt, window.innerWidth/2-promptImageSize/2, window.innerHeight/2-promptImageSize/2, promptImageSize, promptImageSize);
+      image(img_DataDeleteYes, window.innerWidth/2+promptImageSize/3.5, yesNoYPos, imageSize, imageSize);
+      image(img_DataDeleteNo,  window.innerWidth/2-promptImageSize/2.33,yesNoYPos, imageSize, imageSize);
 
-    // Clicked mute
-    if (mouseX >= this.pos.x && mouseX <= this.pos.x + imageSize &&
+      // format our text
+      textSize((window.innerWidth + window.innerHeight)/70);
+      fill(Koji.config.colors.textColor);
+      textAlign(CENTER);
+      // print out our text
+
+      text("Delete progress?", window.innerWidth/2, window.innerHeight/2-promptImageSize/3/* - innerHeight/20*/);
+
+      // Yes clicked
+      if (mouseX >= window.innerWidth/2+promptImageSize/3.5 && mouseX <= window.innerWidth/2+promptImageSize/3.5 + imageSize &&
+          mouseY >= yesNoYPos && mouseY <= yesNoYPos + imageSize &&
+          isMousePressed == true && canInteractWithClick == true)
+      {
+        window.localStorage.clear(); // Clear all saved params
+        showDataDeletePrompt = false;
+        canInteractWithClick = false; // Stops the effect of holding the mouse down
+
+        setup();
+        //Init();
+      }
+
+      // No clicked
+      if (mouseX >= window.innerWidth/2-promptImageSize/2.33 && mouseX <= window.innerWidth/2-promptImageSize/2.33 + imageSize &&
+          mouseY >= yesNoYPos && mouseY <= yesNoYPos + imageSize &&
+          isMousePressed == true && canInteractWithClick == true)
+      {
+        
+        showDataDeletePrompt = false;
+        canInteractWithClick = false; // Stops the effect of holding the mouse down
+      }
+    }
+    else
+    {
+      image(img_DataDelete, this.pos.x, this.pos.y, imageSize, imageSize);
+      // Clicked
+
+      if (mouseX >= this.pos.x && mouseX <= this.pos.x + imageSize &&
         mouseY >= this.pos.y && mouseY <= this.pos.y + imageSize &&
         isMousePressed == true && canInteractWithClick == true)
-    {
-      window.localStorage.clear(); // Clear all saved params - used for testing
+      {
+        showDataDeletePrompt = true;
 
-      canInteractWithClick = false; // Stops the effect of holding the mouse down
+        canInteractWithClick = false; // Stops the effect of holding the mouse down
+      }
     }
   }
 }
@@ -680,8 +786,15 @@ function UpdateTitle()
   textSize((window.innerWidth + window.innerHeight)/50);
   fill(Koji.config.colors.textColor);
   textAlign(CENTER, CENTER);
-  text(Koji.config.strings.title, window.innerWidth / 1.5, window.innerHeight/20);
-  
+  if(window.innerWidth > window.innerHeight)
+  {
+    text(Koji.config.strings.title, window.innerWidth / 2, window.innerHeight/20);
+  }
+  else
+  {
+    text(Koji.config.strings.title, window.innerWidth / 1.5, window.innerHeight/20);
+  }
+
 }
 
 //

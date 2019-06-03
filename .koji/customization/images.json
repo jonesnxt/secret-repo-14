@@ -19,7 +19,13 @@
     "img_SoundOn": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/SoundOncopy.png",
     "img_SoundOff": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/SoundOffcopy.png",
     "img_MouseHold": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/HammerClickRotated.png",
-    "img_DataDelete": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/512pxTrashfontawesome1.svg.png"
+    "img_DataDelete": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/512pxTrashfontawesome1.svg.png",
+    "img_DataDeletePrompt": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/UpgradeBG1.jpg",
+    "img_DataDeleteYes": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/YesDeleteData.png",
+    "img_DataDeleteNo": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/NoDeleteData.png",
+    "img_Menu": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/Menu.jpg",
+    "img_BackgroundMobile": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/UpgradeBG2Mobile.jpg",
+    "img_MenuMobile": "https://images.koji-cdn.com/62693022-c1f9-44bc-b7ea-51645277fde1/MenuMobile.jpg"
   },
   "@@editor": [
     {
@@ -38,6 +44,12 @@
           "key": "img_MouseHold",
           "name": "Mouse Hold Image",
           "description": "Mouse Hold Image",
+          "type": "image"
+        },
+        {
+          "key": "img_BackgroundMobile",
+          "name": "Background Mobile Image",
+          "description": "Background Mobile Image",
           "type": "image"
         },
         {
@@ -116,6 +128,36 @@
           "key": "img_DataDelete",
           "name": "Saved Game Delete",
           "description": "Saved Game Delete",
+          "type": "image"
+        },
+        {
+          "key": "img_DataDeletePrompt",
+          "name": "Saved Game Delete Prompt",
+          "description": "Saved Game Delete Prompt",
+          "type": "image"
+        },
+        {
+          "key": "img_DataDeleteYes",
+          "name": "Do Delete Saved Game Image",
+          "description": "Do Delete Saved Game Image",
+          "type": "image"
+        },
+        {
+          "key": "img_DataDeleteNo",
+          "name": "Don't relete Saved Game image",
+          "description": "Don't Delete Saved Game image",
+          "type": "image"
+        },
+        {
+          "key": "img_Menu",
+          "name": "Menu",
+          "description": "Menu",
+          "type": "image"
+        },
+        {
+          "key": "img_MenuMobile",
+          "name": "Menu Mobile",
+          "description": "Menu Mobile",
           "type": "image"
         }
       ]
